@@ -86,17 +86,5 @@ export class Arena {
       bottomCap.position.y = -columnHeight / 2 - 0.25;
       column.add(bottomCap);
     }
-    
-    // Add some variation to the floor with a dirt texture in the center
-    const centerCircleGeometry = new THREE.CircleGeometry(this.size / 6, 32);
-    const centerCircleMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0xA0522D, // Brown
-      side: THREE.DoubleSide
-    });
-    
-    const centerCircle = new THREE.Mesh(centerCircleGeometry, centerCircleMaterial);
-    centerCircle.rotation.x = -Math.PI / 2;
-    centerCircle.position.y = 0.01; // Slightly above the main floor to avoid z-fighting
-    this.mesh.add(centerCircle);
   }
 }

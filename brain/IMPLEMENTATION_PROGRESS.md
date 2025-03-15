@@ -25,6 +25,7 @@ This report outlines the progress made on the "Sword Duel" game, a 3D multiplaye
 - ✅ Implemented player body and sword models using basic shapes
 - ✅ Set up keyboard event listeners
 - ✅ Added arena boundary constraints
+- ✅ Enhanced movement to be relative to player's facing direction for first-person navigation
 
 #### 4. Opponent Implementation
 - ✅ Created Opponent class for the second player
@@ -41,6 +42,7 @@ This report outlines the progress made on the "Sword Duel" game, a 3D multiplaye
 - ✅ Created auto-follow camera that keeps both players in view
 - ✅ Implemented smooth camera transitions
 - ✅ Positioned camera to show a side view of the duel
+- ✅ Added first-person perspective for immersive combat experience
 
 #### 7. Multiplayer Functionality
 - ✅ Set up WebSocket server using Socket.IO
@@ -100,6 +102,12 @@ The client-side codebase follows a modular approach with these key components:
 6. **NetworkManager** - Manages WebSocket communication
 7. **UIManager** - Controls user interface elements
 
+### Recent Improvements
+- Converted the game to first-person perspective for more immersive gameplay
+- Fixed directional movement to be relative to player's facing direction (WASD controls)
+- Enhanced the arena visuals to be cleaner and less distracting in first-person view
+- Improved player rotation to face the opponent during combat
+
 ### Server Architecture
 The server-side implementation includes:
 
@@ -122,9 +130,9 @@ The game is currently functional with both server and client components:
 5. Optimize performance for smoother gameplay
 
 ## Conclusion
-The Sword Duel game implementation has made significant progress with all core functionality now in place. The game features a 3D coliseum-themed arena, WASD movement, arrow key combat, auto-follow camera, and multiplayer support with WebSockets. Players can duel with basic attacking and blocking mechanics, with a three-hit win condition as specified in the original design documents.
+The Sword Duel game implementation has made significant progress with all core functionality now in place. The game features a 3D coliseum-themed arena, WASD movement, arrow key combat, first-person camera, and multiplayer support with WebSockets. Players can duel with basic attacking and blocking mechanics, with a three-hit win condition as specified in the original design documents.
 
 Further enhancements will focus on improving visuals, adding sound, implementing more comprehensive tests, and optimizing performance.
 
 ---
-*Report generated on March 15, 2025*
+*Report updated on March 15, 2025*

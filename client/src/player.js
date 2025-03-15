@@ -13,6 +13,9 @@ export class Player {
     this.attackTimer = 0;
     this.blockTimer = 0;
     
+    // Direction the player is facing (updated by camera)
+    this.facingDirection = new THREE.Vector3(0, 0, -1);
+    
     // Create player mesh
     this.createMesh();
     
@@ -49,20 +52,43 @@ export class Player {
     this.sword.add(this.swordHandle);
   }
   
+  // Update the player's facing direction (called from camera controller)
+  updateFacingDirection(direction) {
+    this.facingDirection.copy(direction);
+    // Update the mesh rotation to face in the direction of movement
+    if (direction.length() > 0) {
+      this.mesh.lookAt(
+        this.mesh.position.x + direction.x,
+        this.mesh.position.y,
+        this.mesh.position.z + direction.z
+      );
+    }
+  }
+  
   moveForward(delta) {
-    this.mesh.position.z -= this.moveSpeed * delta;
+    // Move in the direction the player is facing
+    const moveVector = this.facingDirection.clone().multiplyScalar(this.moveSpeed * delta);
+    this.mesh.position.add(moveVector);
   }
   
   moveBackward(delta) {
-    this.mesh.position.z += this.moveSpeed * delta;
+    // Move opposite to the direction the player is facing
+    const moveVector = this.facingDirection.clone().multiplyScalar(-this.moveSpeed * delta);
+    this.mesh.position.add(moveVector);
   }
   
   moveLeft(delta) {
-    this.mesh.position.x -= this.moveSpeed * delta;
+    // Move perpendicular to the facing direction (left)
+    const strafeVector = new THREE.Vector3(this.facingDirection.z, 0, -this.facingDirection.x);
+    strafeVector.normalize().multiplyScalar(this.moveSpeed * delta);
+    this.mesh.position.add(strafeVector);
   }
   
   moveRight(delta) {
-    this.mesh.position.x += this.moveSpeed * delta;
+    // Move perpendicular to the facing direction (right)
+    const strafeVector = new THREE.Vector3(-this.facingDirection.z, 0, this.facingDirection.x);
+    strafeVector.normalize().multiplyScalar(this.moveSpeed * delta);
+    this.mesh.position.add(strafeVector);
   }
   
   attack(direction) {

@@ -102,7 +102,8 @@ export class Game {
     this.cameraController = new CameraController(
       this.camera,
       this.player.mesh,
-      this.opponent.mesh
+      this.opponent.mesh,
+      this.player
     );
   }
   
@@ -127,11 +128,23 @@ export class Game {
   setupEventListeners() {
     // Keyboard events for player controls
     window.addEventListener('keydown', (e) => {
-      this.keysPressed[e.key.toLowerCase()] = true;
+      // Store standardized key names
+      const key = e.key.toLowerCase();
+      // For arrow keys, convert from 'ArrowLeft' to 'left', etc.
+      if (key.startsWith('arrow')) {
+        this.keysPressed[key.replace('arrow', '')] = true;
+      } else {
+        this.keysPressed[key] = true;
+      }
     });
     
     window.addEventListener('keyup', (e) => {
-      this.keysPressed[e.key.toLowerCase()] = false;
+      const key = e.key.toLowerCase();
+      if (key.startsWith('arrow')) {
+        this.keysPressed[key.replace('arrow', '')] = false;
+      } else {
+        this.keysPressed[key] = false;
+      }
     });
     
     // Window resize event
@@ -192,25 +205,25 @@ export class Game {
     }
     
     // Handle attacks
-    if (this.keysPressed['arrowleft']) {
+    if (this.keysPressed['left']) {
       this.player.attack('left');
-    } else if (this.keysPressed['arrowright']) {
+    } else if (this.keysPressed['right']) {
       this.player.attack('right');
-    } else if (this.keysPressed['arrowup']) {
+    } else if (this.keysPressed['up']) {
       this.player.attack('up');
-    } else if (this.keysPressed['arrowdown']) {
+    } else if (this.keysPressed['down']) {
       this.player.attack('down');
     }
     
     // Handle blocks
     if (this.keysPressed['shift']) {
-      if (this.keysPressed['arrowleft']) {
+      if (this.keysPressed['left']) {
         this.player.block('left');
-      } else if (this.keysPressed['arrowright']) {
+      } else if (this.keysPressed['right']) {
         this.player.block('right');
-      } else if (this.keysPressed['arrowup']) {
+      } else if (this.keysPressed['up']) {
         this.player.block('up');
-      } else if (this.keysPressed['arrowdown']) {
+      } else if (this.keysPressed['down']) {
         this.player.block('down');
       }
     }
