@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sword Duel - Coliseum</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+    #game-canvas {
+      width: 100%;
+      height: 100vh;
+      display: block;
+    }
+    #ui-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      color: white;
+      font-family: 'Arial', sans-serif;
+    }
+    #score-display {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1.5em;
+    }
+    #main-menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      pointer-events: auto;
+    }
+    #start-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      display: none;
+      pointer-events: auto;
+    }
+    #restart-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    #controls-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9em;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+  
+  <div id="ui-overlay">
+    <div id="score-display" style="display: none;">
+      Player: <span id="player-score">0</span> - Opponent: <span id="opponent-score">0</span>
+    </div>
+    
+    <div id="main-menu">
+      <h1>Sword Duel</h1>
+      <h2>Coliseum</h2>
+      <p>A multiplayer sword-fighting game</p>
+      <button id="start-button">Start Game</button>
+    </div>
+    
+    <div id="game-over">
+      <h1>Game Over</h1>
+      <h2 id="winner-display"></h2>
+      <button id="restart-button">Play Again</button>
+    </div>
+    
+    <div id="controls-info">
+      <h3>Controls:</h3>
+      <p>Movement: WASD</p>
+      <p>Attack: Arrow Keys</p>
+      <p>Block: Shift + Arrow Keys</p>
+    </div>
+  </div>
+</body>
+</html>

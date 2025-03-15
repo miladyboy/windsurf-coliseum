@@ -1,0 +1,27 @@
+{
+  "name": "sword-duel-client",
+  "version": "1.0.0",
+  "description": "Client for Sword Duel game",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve --open",
+    "build": "webpack --mode production",
+    "test": "jest"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.6.1",
+    "three": "^0.150.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.5.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.76.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
